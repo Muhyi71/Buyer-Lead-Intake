@@ -1,56 +1,102 @@
 # Buyer Lead Intake
 
-A modern web app built with TypeScript, Tailwind, Supabase, and Vite for managing buyer leads. Designed to simplify lead creation, import, viewing, editing, and updating with a clean and user-friendly interface.
+A full-stack web application for managing buyer leads with Supabase as the backend and React + Vite + TailwindCSS on the frontend.  
+It supports lead intake, editing, import/export, and validation flows for clean data management.
 
 ---
 
-## 🧩 Features
+## 🚀 Features
 
-- View all leads in a list (BuyerList page)  
-- Create a new lead (CreateBuyer)  
-- Edit existing leads (EditBuyer)  
-- Import multiple leads at once (ImportBuyers)  
-- Home (Index page) and 404 (NotFound page)  
-
----
-
-## 📂 Tech Stack
-
-- **Frontend**: TypeScript, Vite, Tailwind CSS  
-- **Backend / Database**: Supabase (for data storage and migrations)  
-- **Tools**: SQL migrations, tsconfig, vite.config  
+- **Buyer Management** – Create, update, edit, and delete buyer leads.  
+- **CSV Import/Export** – Bulk add or extract buyers.  
+- **Validation** – Strong client + server validation to ensure clean data.  
+- **Responsive UI** – Modern design using TailwindCSS.  
+- **Supabase Integration** – Real-time database and API layer.
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Setup
 
-1. Clone the repo:  
-   ```bash
-   git clone https://github.com/Muhyi71/Buyer-Lead-Intake.git
-   cd Buyer-Lead-Intake
-Install dependencies:
-
+### 1. Clone the repo
+```bash
+git clone https://github.com/Muhyi71/Buyer-Lead-Intake.git
+cd Buyer-Lead-Intake
+2. Install dependencies
 bash
 Copy code
 npm install
-# or
-yarn
-Setup environment:
+3. Environment variables
+Create a .env file in the project root with your Supabase keys:
 
-Add your Supabase project URL and API key to .env
-
-Run the development server:
-
+ini
+Copy code
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+4. Database migrations
+bash
+Copy code
+npx supabase migration up
+5. Run locally
 bash
 Copy code
 npm run dev
-Open in browser:
-Go to http://localhost:3000
+🏗️ Design Notes
+Validation
 
-🧮 Database & Migrations
-Supabase migrations are stored under supabase/migrations. Run migrations after configuring environment variables to keep the database schema up to date.
+Client-side validation with React forms (immediate feedback).
 
+Server-side enforcement using Supabase constraints for consistency.
+
+Ownership Enforcement
+
+Leads are scoped per authenticated user.
+
+Supabase row-level security (RLS) ensures users only access their data.
+
+Rendering
+
+Fully client-side rendered (CSR) with React + Vite.
+
+Future scope: Server-side rendering (SSR) for SEO and performance.
+
+✅ Completed
+Buyer CRUD pages (CreateBuyer, EditBuyer, BuyerList)
+
+CSV import/export flows
+
+Validation rules for required fields (name, email, phone)
+
+Supabase migrations & schema setup
+
+Basic responsive UI with Tailwind
+
+⏭️ Skipped / Deferred (with reasons)
+Admin role
+Deferred to keep scope focused on core user workflows (CRUD + import/export).
+Can be added later if multi-level access is required.
+
+File upload for attachments
+Considered out of scope for this iteration to avoid storage complexity.
+Chose to prioritize CSV import/export instead.
+
+Optimistic updates with rollback
+Skipped to keep data consistency strong.
+Current flow prioritizes accuracy with server-validated updates.
+
+Advanced full-text search
+Left out to keep the search implementation simple and performant.
+Current debounced search by name/email/phone covers most use cases.
+
+📌 Future Improvements
+Add role-based access control (Admin vs User).
+
+Implement file storage for buyer documents.
+
+Enhance UI with charts & analytics dashboards.
+
+Introduce SSR for performance & SEO.
 📫 Contact
+
 GitHub: Muhyi71
 
 LinkedIn: Mohammed Abdul Muhyi
